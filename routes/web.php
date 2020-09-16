@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Post;
 Route::get('/', function () {
-    return view('welcome');
+ DB::statement('DROP TABLE posts');
+  return view('welcome');
 });
 Route::get('/about', function () {
+
     return view('pages/about');
 });

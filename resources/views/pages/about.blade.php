@@ -2,6 +2,7 @@
 @extends('layouts/_nav')
 
     @section('content')
+    
         <!-- Page Content -->
   <div class="container">
 

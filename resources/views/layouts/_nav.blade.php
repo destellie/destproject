@@ -21,7 +21,19 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
+          </ul>
+          <ul class="navbar-nav ml-auto navbar-right">
+           <li class="nav-item">
+             <a class="nav-link" href="{{ route('login') }}">Login</a>
+           </li>
+                           
+           <li class="nav-item">
+              <a class="nav-link" href="{{ route('register') }}">Register</a>
+            </li>
+
         </ul>
+                </div>
+            </div>
       </div>
     </div>
   </nav>

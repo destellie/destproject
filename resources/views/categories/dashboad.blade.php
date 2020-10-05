@@ -27,15 +27,14 @@
 <td>{{$category->created_at}}</td>
 <td>{{$category->updated_at}}</td>
 
-<td><a data-category_id="{{$category->id}}" data-name="{{$category->name}}" data-slug="{{$category->slug}}" data-toggle="modal" data-target="#exampleModal-edit" type="button" class="btn btn-info btn-md">Edit</a></td>
+<td><a data-category_id="{{$category->id}}" data-name="{{$category->name}}" data-slug="{{$category->slug}}" data-toggle="modal" data-target="#exampleModal-edit" type="button" class="btn btn-info btn-md"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
 <td><a  type="button" class="btn btn-warning nav-link" href="{{route('categories.show',$category->id)}}">Show</a></td>
-<td><a  data-category_id="{{$category->id}}" data-toggle="modal" data-target="#exampleModal-delete" type="button" class="btn btn-danger">Delete</a></td>
+<td><a  data-category_id="{{$category->id}}" data-toggle="modal" data-target="#exampleModal-delete" type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 </tr>
 @endforeach
 </table>
 <div style="margin-left:500px">
-{{++$key}}
-{{$categories->links()}}
+
 </div>
 
 <!-- Add new category -->

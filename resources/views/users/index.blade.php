@@ -4,7 +4,7 @@
 <div class="container">
 <div class="row justify-content-center">
 
-    <div class="col-md-12">
+    <div class="col-md-10">
             <div class="card">
                 <div class="card-header">List of Users</div>
                
@@ -33,14 +33,14 @@
                             @endif
                         </td>
                         @can('edit-users')
-                        <td><a  type="button" class="btn btn-info" href="{{route('users.edit',$user->id)}}">Edit</a></td>
+                        <td><a  type="button" class="btn btn-info" href="{{route('users.edit',$user->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                         <td><a  type="button" class="btn btn-warning" href="{{route('users.show',$user->id)}}">Show</a></td>
                         @endcan
                         @can('delete-users')
                         <td><form action="{{route('users.destroy',$user->id)}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                               <button type="submit" class="btn btn-danger">Delete</button>                     
+                               <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>                     
                         </form>
                         @endcan
                         </td>

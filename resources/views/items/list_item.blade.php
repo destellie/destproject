@@ -31,14 +31,13 @@
 <td>{{$item->created_at}}</td>
 <td>{{$item->updated_at}}</td>
 
-<td><a data-item_id="{{$item->id}}" data-name="{{$item->name}}" data-slug="{{$item->slug}}" data-content="{{$item->content}}" data-price="{{$item->price}}" data-published="{{$item->published}}" data-user_id="{{$item->user_id}}" data-category_id="{{$item->category_id}}" data-toggle="modal" data-target="#exampleModal-edit" type="button" class="btn btn-info btn-md">Edit</a></td>
-<td><a  data-item_id="{{$item->id}}" data-toggle="modal" data-target="#exampleModal-delete" type="button" class="btn btn-danger">Delete</a></td>
+<td><a data-item_id="{{$item->id}}" data-name="{{$item->name}}" data-slug="{{$item->slug}}" data-content="{{$item->content}}" data-price="{{$item->price}}" data-published="{{$item->published}}" data-user_id="{{$item->user_id}}" data-category_id="{{$item->category_id}}" data-toggle="modal" data-target="#exampleModal-edit" type="button" class="btn btn-info btn-md"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+<td><a  data-item_id="{{$item->id}}" data-toggle="modal" data-target="#exampleModal-delete" type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 </tr>
 @endforeach
 </table>
 <div style="margin-left:500px">
-{{++$key}}
-{{$items->links()}}
+
 </div>
 
 

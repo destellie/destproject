@@ -25,33 +25,15 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/list_items', 'ItemController@show');
-//Route::patch('pages/update_items', 'ItemController@update')->name('items.update');
-Route::delete('/list_items', 'ItemController@destroy');
-Route::get('pages/add_item', 'ItemController@create')->name('items.create');
-Route::post('pages/add_item', 'ItemController@store')->name('items.store');
+Route::resource('items', 'ItemController');
 
 Route::resource('categories','CategoryController');
 
 Route::resource('/Admin/users','Admin\UsersController')->middleware('can:manage-users');
 
-
-/*Route::get('categories/list_cat', 'CategoryController@show');
-Route::get('categories/add_cat', 'CategoryController@create');
-Route::post('categories/add_cat', 'CategoryController@store');
-Route::get('categories/update_cat', 'CategoryController@update');
-Route::get('categories/delete_cat', 'CategoryController@destroy');*/
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*Route::middleware('auth')->group(function(){
-  Route::get('pages/my-profile','HomeController@edit')->name('users.edit');
-  Route::patch('pages/my-profile','HomeController@update')->name('users.update');
- // Route::get('pages/profile','HomeController@show')->name('users.show');
-  Route::get('pages/my-orders','OrdersController@index')->name('orders.index');
 
-});*/
 
 

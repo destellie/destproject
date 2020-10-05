@@ -19,8 +19,6 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $category['categories']=Category::Orderby('id','asc')->paginate(3);
-        //$categories=Category::all();
-        //$categories = Category::latest()->paginate(5);
         return view('categories/dashboad',$category);
     }
 

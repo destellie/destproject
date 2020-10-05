@@ -1,4 +1,4 @@
-@extends('layouts._admin')
+@extends('layouts.admin')
 @section('content')
 
 <div class="col-md-12">
@@ -117,7 +117,7 @@
         @csrf
         @method('DELETE')
         <input type="hidden" id="category_id" name="category_id">
-          <p class="text-cent" width="50px">Are you sur you want t Delete this Category?</p>
+          <p class="text-cent" width="50px">Are you sure you want to Delete this Category?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-warning" data-dismiss="modal">No/Cancel</button>

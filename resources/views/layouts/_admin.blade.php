@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -29,7 +30,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-default bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Dashbaord') }}
@@ -47,17 +48,12 @@
                         <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item active">
-                    <a class="nav-link" href="#">My Profile</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
+                   
                     
                     @can('manage-users')
-                    <li class="nav-item active">
-                    <a class="nav-link" href="{{url('/list_items ')}}">Items</a>
-                        <span class="sr-only">(current)</span>
-                        </a>
+                    <li class="nav-item ">
+                    <a class="nav-link" href="{{route('items.index')}}">Items</a>
+                       
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
@@ -67,6 +63,9 @@
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="{{url('categories/list_cat ')}}">Pages</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link " href="{{url('/')}}"><span class="mini-click-non">See the site</span></a>
                     </li>
                     @endcan
                     </ul>
@@ -92,14 +91,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @can('manage-users')
                                     
-                                    
-                                    <a class="dropdown-item" href="{{ route('users.index') }}">{{ __('List of users') }}</a>
                                     @endcan
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

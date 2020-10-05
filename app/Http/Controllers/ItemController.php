@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Items;
-use Illuminate\Validation\Validator;
-
+use App\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items['items']=Item::Orderby('id','asc')->paginate(3);
+        return view('items/list_item',$items);
     }
 
     /**
@@ -30,58 +25,49 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('pages/add_item');
+        return view('items.add_item');
     }
 
-   
-    public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
+        $item = array(
+            'name'=>$request->name,
+            'slug'=>$request->slug,
+            'content'=>$request->content,
+            'price'=>$request->price,
+            'published'=>$request->published,
+            'user_id'=>$request->user_id,
+            'category_id'=>$request->category_id
 
-       $data = request()->validate([
-         'name'       =>['required','string','max:255'],
-        'slug'        =>['required','string','max:255'],
-        'content'     =>['required','string','max:255'],
-        'price'       =>['required','string','max:255'],
-        'published'   =>['boolean']
-        ]);
-
-        auth()->user()->items()->create([
-            'name'        =>$data['name'],
-            'slug'        =>$data['slug'],
-            'content'     =>$data['content'],
-            'price'       =>$data['price'],
-            'published'   =>$data['published']
-            
-
-        ]);
-        return redirect()->route('/list_items',['user'=>auth()->user() ]);
-      
-        
-    
-         
-       
+        );
+        Item::create($item);
+        return redirect()->route('items.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Item $item)
     {
-        $items=Items::all();//Items c' est le nom du model
-       
-        return view('pages/list_items',compact('items'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Item $item)
     {
         //
     }
@@ -90,59 +76,38 @@ class ItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request)
     {
+        
+        $item = array(
+            'name'=>$request->name,
+            'slug'=>$request->slug,
+            'content'=>$request->content,
+            'price'=>$request->price,
+            'published'=>$request->published,
+            'user_id'=>$request->user_id,
+            'category_id'=>$request->category_id
 
-        $item = Items::findOrFail($id);
-        /*$this->validate([
-            'name'        =>['require','string','max:255,name'.items()->id()],
-            'slug'        =>['require','string','max:255'],
-            'content'     =>['require','text'],
-            'price'       =>['require','string','max:200'],
-            'published'   =>['require','boolean'],
-            'user_id'     =>['require','integer','max:11'],
-            'category_id' =>['require','integer','max:11'],
-            'created_at'  =>['require','string','max:20'],
-            'updated_at'  =>['require','string','max:20'],
-            ]);*/
-            $this->validate($request,[
-                'name'        =>'require',
-                'slug'        =>'require',
-                'content'     =>'require',
-                'price'       =>'require',
-                'published'   =>'require',
-                'user_id'     =>'require',
-                'category_id' =>'require',
-                'created_at'  =>'require',
-                'updated_at'  =>'required'
-                ]);
-
-           
-            $input = $request->all();
-            $item->fill($input)->save();
-            Session::flash('flash_message', 'profile and password updated successfully');
-
-            return redirect()->view('pages/update_items')->with('success','Data Added');
-       
-            
+        );
+     // echo"<pre>"; print_r($category); die;
+        Item::findOrfail($request->item_id)->update($item);
+        return redirect()->route('items.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)   
+    public function destroy(Request $item)
     {
-        $item = Items::findOrFail($id);
-        $item->delete();
-        Session::flash('flash_message', 'item successfully deleted');
-
-            return redirect()->route('/list_items');
-       
+        $delete = $item->all();
+        $deleteitem= Item::findOrfail($item->item_id);
+        $deleteitem->delete();
+        return redirect()->route('items.index');
     }
 }

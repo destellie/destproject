@@ -46,7 +46,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request){
-        $request->validate([
+        /*$request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.auth()->id()],
             'password' => ['sometimes','nullable', 'string', 'min:8', 'confirmed'],
@@ -60,6 +60,6 @@ class HomeController extends Controller
         $user->password = bcrypt($request->password);
         $user->fill($input)->save();
         return back()->with('success_message', 'profile and password updated successfully');
-       
+       */
     }
 }

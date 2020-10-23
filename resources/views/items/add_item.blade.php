@@ -10,34 +10,23 @@
             <div class="modal-body">
                 <form action="{{route('items.store')}}" method="post">
                         @csrf
-                        <input type="hidden" id="item_id" name="item_id">
+                        <input type="hidden" id="product_id" name="product_id">
                     <div class="input-group">
                             <div class="input-group-prepend">
-                                    <span input-group-text>Name and Slug</span>
+                                    <span input-group-text>ImagePath and Title</span>
                             </div>
-                            <input type="text" class="form-control" name="name">
-                            <input  type="text" class="form-control" name="slug">
+                            <input type="file" class="form-control" name="imagePath">
+                            <input  type="text" class="form-control" name="title">
                     </div>
                     <div class="input-group">
                             <div class="input-group-prepend">
-                                    <span input-group-text>Content and Price</span>
+                                    <span input-group-text>Description and Price</span>
                             </div>
-                            <input type="text" class="form-control" name="content">
+                            <input type="text" class="form-control" name="description">
                             <input  type="text" class="form-control" name="price">
                     </div>
-                    <div class="input-group">
-                            <div class="input-group-prepend">
-                                    <span input-group-text>Published and User_id</span>
-                            </div>
-                            <input type="text" class="form-control" name="published">
-                            <input  type="text" class="form-control" name="user_id">
-                    </div>
-                    <div class="input-group">
-                            <div class="input-group-prepend">
-                                    <span input-group-text>Category_id</span>
-                            </div>
-                            <input  type="text" class="form-control" name="category_id">
-                    </div>
+                    
+                   
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success" > Save Item</button>

@@ -46,108 +46,33 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+@foreach($products->chunk(3) as $productChunk)
 
     <div class="row">
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{asset('images/1.jpg')}}" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('/about')}}">Item One</a>
-            </h4>
-            <h5>$24.99</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{asset('images/2.jpg')}}" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('/about')}}">Item Two</a>
-            </h4>
-            <h5>$24.99</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{asset('images/3.jpg')}}" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('/about')}}">Item Three</a>
-            </h4>
-            <h5>$24.99</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{asset('images/4.jpg')}}" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('/about')}}">Item Four</a>
-            </h4>
-            <h5>$24.99</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{asset('images/5.jpeg')}}"  alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('/about')}}">Item Five</a>
-            </h4>
-            <h5>$24.99</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="{{asset('images/6.jpg')}}"  alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="{{url('/about')}}">Item Six</a>
-            </h4>
-            <h5>$24.99</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-          </div>
-        </div>
-      </div>
-
+         @foreach($productChunk as $product)
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="{{$product->imagePath}}" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="{{url('/about')}}">{{$product->title}}</a>
+                  </h4>
+                  <h5>${{$product->price}}</h5>
+                  <p class="card-text">{{$product->description}}</p>
+                  <a href="{{route('product.addToCart', ['id' =>$product->id])}}" class="btn btn-success">Add to cart</a>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            
+            </div>
+    
+      
+@endforeach
     </div>
     <!-- /.row -->
-
+@endforeach
   </div>
   <!-- /.col-lg-9 -->
 

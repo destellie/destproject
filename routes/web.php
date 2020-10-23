@@ -11,21 +11,50 @@
 |
 */
 use App\Items;
-//use App\Category;
-Route::get('/', function () {
-  return view('welcome');
+
+Route::get('/', [
+    'uses' => 'ProductController@getIndex',
+    'as' => 'welcome'
+]);
+Route::get('pages/About', function () {
+
+    return view('pages/About');
 });
-Route::get('/about', function () {
-  /*DB::table('items')->insert([
-    ['name'=>'Nova Deodorant','slug'=>'nova-deo','content'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus',
-    'price'=>'50ghc','published'=>1,'user_id'=>1,'category_id'=>1,'created_at'=>'2020-09-22 15:43:45','updated_at'=>'2020-09-22 15:43:45']
-  ]);*/
+Route::get('pages/add-to-cart/{id}' ,[
+  'uses' => 'ProductController@getAddToCart',
+  'as' => 'product.addToCart'
+]);
+Route::get('/reduce/{id}' ,[
+  'uses' => 'ProductController@getReduceByOne',
+  'as' => 'product.reduceByOne'
+]);
 
-    return view('pages/about');
-});
+Route::get('/remove/{id}' ,[
+  'uses' => 'ProductController@getRemoveArticle',
+  'as' => 'product.remove'
+]);
+Route::get('pages/shopping-cart' ,[
+  'uses' => 'ProductController@getCart',
+  'as' => 'product.shoppingCart'
+]);
+Route::get('pages/my-orders' ,[
+  'uses' => 'ProductController@getProfile',
+  'as' => 'product.Orders'
+]);
 
+Route::get('pages/checkout' ,[
+  'uses' => 'ProductController@getCheckout',
+  'as' => 'checkout',
+  'middleware' =>'auth'
+]);
+Route::post('pages/checkout' ,[
+  'uses' => 'ProductController@postCheckout',
+  'as' => 'checkout'
+]);
 
-Route::resource('items', 'ItemController');
+Route::resource('menus', 'MenuItemController');
+
+Route::resource('items', 'ProductController');
 
 Route::resource('categories','CategoryController');
 

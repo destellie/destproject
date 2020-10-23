@@ -9,13 +9,13 @@ class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     * creating role of users
      * @return void
      */
     public function run()
     {
-        User::truncate();
-        DB::table('role_user')->truncate();
+      
+        DB::table('role_user');
 
         $admin = User::create([
             'name'=>'admin',

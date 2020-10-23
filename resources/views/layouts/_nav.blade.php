@@ -7,20 +7,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url('/ ')}}">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/about ')}}">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
+          <!-- inserting menu automatically-->
+         
+            @foreach ($menuItems as $menuItem)
+            <li class="nav-item">
+              <a href="{{$menuItem->link}}" class="nav-link">{{$menuItem->name}}</a>
+              </li>
+            @endforeach
           </ul>
           <ul class="navbar-nav ml-auto navbar-right">
            <li class="nav-item">

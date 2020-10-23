@@ -7,15 +7,13 @@
         <!-- <meta name="author" content=""> CSRF Token -->
          <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <title>FashionNova --{{$title}}</title>
+        <title>FashionNova </title>
         <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
          <!-- Bootstrap core CSS -->
-        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/bootstrap1.css')}}" rel="stylesheet">
          <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-        <!-- Custom styles for this template -->
+  
         <link href="{{asset('css/shop-homepage.css')}}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>

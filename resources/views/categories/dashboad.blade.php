@@ -35,6 +35,7 @@
 </table>
 <div style="margin-left:500px">
 
+{{$categories->links()}}
 </div>
 
 <!-- Add new category -->
